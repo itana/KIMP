@@ -33,6 +33,11 @@
             System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
             Aga.Controls.Tree.NodeControls.NodeTextBox nodeTextBox2;
             Aga.Controls.Tree.NodeControls.NodeTextBox nodeTextBox3;
+            Aga.Controls.Tree.NodeControls.NodeTextBox nodeTextBox1;
+            Aga.Controls.Tree.NodeControls.NodeDecimalTextBox nodeDecimalTextBox1;
+            Aga.Controls.Tree.NodeControls.NodeDecimalTextBox nodeDecimalTextBox2;
+            Aga.Controls.Tree.NodeControls.NodeDecimalTextBox nodeDecimalTextBox5;
+            Aga.Controls.Tree.NodeControls.NodeDecimalTextBox nodeDecimalTextBox6;
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.findButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -47,15 +52,15 @@
             this.treeColumn3 = new Aga.Controls.Tree.TreeColumn();
             this.treeColumn6 = new Aga.Controls.Tree.TreeColumn();
             this.treeColumn7 = new Aga.Controls.Tree.TreeColumn();
-            this.nodeTextBox1 = new Aga.Controls.Tree.NodeControls.NodeTextBox();
-            this.nodeDecimalTextBox1 = new Aga.Controls.Tree.NodeControls.NodeDecimalTextBox();
-            this.nodeDecimalTextBox2 = new Aga.Controls.Tree.NodeControls.NodeDecimalTextBox();
-            this.nodeDecimalTextBox5 = new Aga.Controls.Tree.NodeControls.NodeDecimalTextBox();
-            this.nodeDecimalTextBox6 = new Aga.Controls.Tree.NodeControls.NodeDecimalTextBox();
             panel1 = new System.Windows.Forms.Panel();
             flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             nodeTextBox2 = new Aga.Controls.Tree.NodeControls.NodeTextBox();
             nodeTextBox3 = new Aga.Controls.Tree.NodeControls.NodeTextBox();
+            nodeTextBox1 = new Aga.Controls.Tree.NodeControls.NodeTextBox();
+            nodeDecimalTextBox1 = new Aga.Controls.Tree.NodeControls.NodeDecimalTextBox();
+            nodeDecimalTextBox2 = new Aga.Controls.Tree.NodeControls.NodeDecimalTextBox();
+            nodeDecimalTextBox5 = new Aga.Controls.Tree.NodeControls.NodeDecimalTextBox();
+            nodeDecimalTextBox6 = new Aga.Controls.Tree.NodeControls.NodeDecimalTextBox();
             panel1.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -197,18 +202,19 @@
             this.treeViewAdv1.Location = new System.Drawing.Point(0, 23);
             this.treeViewAdv1.Model = null;
             this.treeViewAdv1.Name = "treeViewAdv1";
-            this.treeViewAdv1.NodeControls.Add(this.nodeTextBox1);
-            this.treeViewAdv1.NodeControls.Add(this.nodeDecimalTextBox1);
-            this.treeViewAdv1.NodeControls.Add(this.nodeDecimalTextBox2);
+            this.treeViewAdv1.NodeControls.Add(nodeTextBox1);
+            this.treeViewAdv1.NodeControls.Add(nodeDecimalTextBox1);
+            this.treeViewAdv1.NodeControls.Add(nodeDecimalTextBox2);
             this.treeViewAdv1.NodeControls.Add(nodeTextBox2);
             this.treeViewAdv1.NodeControls.Add(nodeTextBox3);
-            this.treeViewAdv1.NodeControls.Add(this.nodeDecimalTextBox5);
-            this.treeViewAdv1.NodeControls.Add(this.nodeDecimalTextBox6);
+            this.treeViewAdv1.NodeControls.Add(nodeDecimalTextBox5);
+            this.treeViewAdv1.NodeControls.Add(nodeDecimalTextBox6);
             this.treeViewAdv1.SelectedNode = null;
             this.treeViewAdv1.Size = new System.Drawing.Size(669, 318);
             this.treeViewAdv1.TabIndex = 2;
             this.treeViewAdv1.Text = "treeViewAdv1";
             this.treeViewAdv1.UseColumns = true;
+            this.treeViewAdv1.ColumnClicked += new System.EventHandler<Aga.Controls.Tree.TreeColumnEventArgs>(this.treeViewAdv1_ColumnClicked);
             // 
             // treeColumn1
             // 
@@ -251,45 +257,45 @@
             // 
             // nodeTextBox1
             // 
-            this.nodeTextBox1.DataPropertyName = "Name";
-            this.nodeTextBox1.EditEnabled = false;
-            this.nodeTextBox1.IncrementalSearchEnabled = true;
-            this.nodeTextBox1.LeftMargin = 3;
-            this.nodeTextBox1.ParentColumn = this.treeColumn1;
+            nodeTextBox1.DataPropertyName = "Name";
+            nodeTextBox1.EditEnabled = false;
+            nodeTextBox1.IncrementalSearchEnabled = true;
+            nodeTextBox1.LeftMargin = 3;
+            nodeTextBox1.ParentColumn = this.treeColumn1;
             // 
             // nodeDecimalTextBox1
             // 
-            this.nodeDecimalTextBox1.DataPropertyName = "TCount";
-            this.nodeDecimalTextBox1.EditEnabled = false;
-            this.nodeDecimalTextBox1.IncrementalSearchEnabled = true;
-            this.nodeDecimalTextBox1.LeftMargin = 3;
-            this.nodeDecimalTextBox1.ParentColumn = this.treeColumn2;
-            this.nodeDecimalTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            nodeDecimalTextBox1.DataPropertyName = "TCount";
+            nodeDecimalTextBox1.EditEnabled = false;
+            nodeDecimalTextBox1.IncrementalSearchEnabled = true;
+            nodeDecimalTextBox1.LeftMargin = 3;
+            nodeDecimalTextBox1.ParentColumn = this.treeColumn2;
+            nodeDecimalTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // nodeDecimalTextBox2
             // 
-            this.nodeDecimalTextBox2.DataPropertyName = "SCount";
-            this.nodeDecimalTextBox2.EditEnabled = false;
-            this.nodeDecimalTextBox2.IncrementalSearchEnabled = true;
-            this.nodeDecimalTextBox2.LeftMargin = 3;
-            this.nodeDecimalTextBox2.ParentColumn = this.treeColumn3;
-            this.nodeDecimalTextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            nodeDecimalTextBox2.DataPropertyName = "SCount";
+            nodeDecimalTextBox2.EditEnabled = false;
+            nodeDecimalTextBox2.IncrementalSearchEnabled = true;
+            nodeDecimalTextBox2.LeftMargin = 3;
+            nodeDecimalTextBox2.ParentColumn = this.treeColumn3;
+            nodeDecimalTextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // nodeDecimalTextBox5
             // 
-            this.nodeDecimalTextBox5.DataPropertyName = "SCountPerFrame";
-            this.nodeDecimalTextBox5.IncrementalSearchEnabled = true;
-            this.nodeDecimalTextBox5.LeftMargin = 3;
-            this.nodeDecimalTextBox5.ParentColumn = this.treeColumn6;
-            this.nodeDecimalTextBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            nodeDecimalTextBox5.DataPropertyName = "SCountPerFrame";
+            nodeDecimalTextBox5.IncrementalSearchEnabled = true;
+            nodeDecimalTextBox5.LeftMargin = 3;
+            nodeDecimalTextBox5.ParentColumn = this.treeColumn6;
+            nodeDecimalTextBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // nodeDecimalTextBox6
             // 
-            this.nodeDecimalTextBox6.DataPropertyName = "CallPerFrame";
-            this.nodeDecimalTextBox6.IncrementalSearchEnabled = true;
-            this.nodeDecimalTextBox6.LeftMargin = 3;
-            this.nodeDecimalTextBox6.ParentColumn = this.treeColumn7;
-            this.nodeDecimalTextBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            nodeDecimalTextBox6.DataPropertyName = "CallPerFrame";
+            nodeDecimalTextBox6.IncrementalSearchEnabled = true;
+            nodeDecimalTextBox6.LeftMargin = 3;
+            nodeDecimalTextBox6.ParentColumn = this.treeColumn7;
+            nodeDecimalTextBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // Form1
             // 
@@ -316,17 +322,12 @@
 		private System.Windows.Forms.TextBox textBox1;
 		private Aga.Controls.Tree.TreeViewAdv treeViewAdv1;
 		private Aga.Controls.Tree.TreeColumn treeColumn1;
-		private Aga.Controls.Tree.TreeColumn treeColumn2;
-		private Aga.Controls.Tree.NodeControls.NodeTextBox nodeTextBox1;
-		private Aga.Controls.Tree.NodeControls.NodeDecimalTextBox nodeDecimalTextBox1;
-		private Aga.Controls.Tree.TreeColumn treeColumn3;
-		private Aga.Controls.Tree.NodeControls.NodeDecimalTextBox nodeDecimalTextBox2;
+        private Aga.Controls.Tree.TreeColumn treeColumn2;
+        private Aga.Controls.Tree.TreeColumn treeColumn3;
 		private Aga.Controls.Tree.TreeColumn treeColumn4;
 		private Aga.Controls.Tree.TreeColumn treeColumn5;
 		private Aga.Controls.Tree.TreeColumn treeColumn6;
-		private Aga.Controls.Tree.TreeColumn treeColumn7;
-		private Aga.Controls.Tree.NodeControls.NodeDecimalTextBox nodeDecimalTextBox5;
-		private Aga.Controls.Tree.NodeControls.NodeDecimalTextBox nodeDecimalTextBox6;
+        private Aga.Controls.Tree.TreeColumn treeColumn7;
 		private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button findButton;
 	}

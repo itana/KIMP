@@ -27,7 +27,7 @@ namespace ProfilerClient
 
 			mStringList = new List<string>();
 
-			treeViewAdv1.Model = new TreeModel();
+			treeViewAdv1.Model = new SortedTreeModel(new TreeModel());
 
 			// All setup finished, we can start the timer.
 			timer1.Enabled = true;
@@ -72,7 +72,7 @@ namespace ProfilerClient
 		private void afterDisconnect()
 		{
 			mDisconnectPending = false;
-			TreeModel model = treeViewAdv1.Model as TreeModel;
+            TreeModel model = (treeViewAdv1.Model as SortedTreeModel).InnerModel as TreeModel;
 			mClient.Close();
 			mClient = null;
 			textBox1.Enabled = true;
@@ -227,7 +227,7 @@ namespace ProfilerClient
 
 		private void backgroundWorker1_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
 		{
-			TreeModel model = treeViewAdv1.Model as TreeModel;
+            TreeModel model = (treeViewAdv1.Model as SortedTreeModel).InnerModel as TreeModel;
 			if(mRootNode != null)
 				model.Nodes.Add(mRootNode);
 			if (mDisconnectPending)
@@ -305,6 +305,77 @@ namespace ProfilerClient
 
             }
             while (nextNodeAdv != treeViewAdv1.SelectedNode);
+        }
+
+        class ItemSorter : System.Collections.IComparer
+        {
+            private string _mode;
+            private SortOrder _order;
+
+            public ItemSorter(string mode, SortOrder order)
+            {
+                _mode = mode;
+                _order = order;
+            }
+
+            public int Compare(object x, object y)
+            {
+                CallstackNode a = x as CallstackNode;
+                CallstackNode b = y as CallstackNode;
+                int res = 0;
+
+                if (_mode == "TKBytes")
+                {
+                    if (a.TkBytes - b.TkBytes > 0)
+                        res = 1;
+                    else if (a.TkBytes - b.TkBytes < 0)
+                        res = -1;
+                }
+                else if (_mode == "TCount")
+                {
+                    if (a.TCount - b.TCount > 0)
+                        res = 1;
+                    else if (a.TCount - b.TCount < 0)
+                        res = -1;
+                }
+                else if (_mode == "SCount")
+                {
+                    if (a.SCount - b.SCount > 0)
+                        res = 1;
+                    else if (a.SCount - b.SCount < 0)
+                        res = -1;
+                }
+                else if (_mode == "SkBytes")
+                {
+                    if (a.SkBytes - b.SkBytes > 0)
+                        res = 1;
+                    else if (a.SkBytes - b.SkBytes < 0)
+                        res = -1;
+                }
+                else
+                    res = string.Compare(a.Name, b.Name);
+
+                if (_order == SortOrder.Ascending)
+                    return -res;
+                else
+                    return res;
+            }
+
+            private string GetData(object x)
+            {
+                return (x as CallstackNode).Name;
+            }
+        }
+
+        private void treeViewAdv1_ColumnClicked(object sender, TreeColumnEventArgs e)
+        {
+            TreeColumn clicked = e.Column;
+            if (clicked.SortOrder == SortOrder.Ascending)
+                clicked.SortOrder = SortOrder.Descending;
+            else
+                clicked.SortOrder = SortOrder.Ascending;
+
+            (treeViewAdv1.Model as SortedTreeModel).Comparer = new ItemSorter(clicked.Header, clicked.SortOrder);
         }
 	}
 
