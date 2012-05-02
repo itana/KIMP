@@ -207,6 +207,7 @@ protected:
 		while(thread.keepRun()) {
 			MemoryProfiler::Scope s("LoopRunnable::run");
 			mMyObject.functionA();
+			Profiler::mSleep(1);
 		}
 	}
 
@@ -284,6 +285,8 @@ void testMemoryProfilerTcpServer()
 		memoryProfiler.nextFrame();
 
 		server.accept();
+
+		Profiler::mSleep(1);
 
 		// Refresh and display the profiling result every 1 second
 		if(timer.get().asSecond() > 1)

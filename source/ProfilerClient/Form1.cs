@@ -245,6 +245,67 @@ namespace ProfilerClient
 			mPasued = !mPasued;
 			button2.Text = mPasued ? "Resume" : "Pause";
 		}
+
+        TreeNodeAdv GetNextNodeAdv(TreeNodeAdv current)
+        {
+
+            if (current.Children.Count > 0)
+                return current.Children[0];
+            else
+            {
+                TreeNodeAdv nn = current.NextNode;
+                if (nn != null)
+                    return nn;
+                else
+                {
+                    TreeNodeAdv parent = current.Parent;
+
+
+                    while (parent != null && parent.NextNode == null)
+                    {
+                        parent = parent.Parent;
+                    }
+
+                    if (parent == null)
+                        return null;
+
+                    return parent.NextNode;
+                }
+            }
+        }
+
+        private void findButton_Click(object sender, EventArgs e)
+        {
+            // TODO:A TextBox
+            string findStr = "c";
+
+            TreeNodeAdv currentNodeAdv = treeViewAdv1.SelectedNode;
+
+            TreeNodeAdv nextNodeAdv;
+
+            do
+            {
+                if (currentNodeAdv == null)
+                    nextNodeAdv = treeViewAdv1.Root;
+                else
+                    nextNodeAdv = GetNextNodeAdv(currentNodeAdv);
+
+                if (nextNodeAdv != null)
+                {
+                    CallstackNode callStackNode = nextNodeAdv.Tag as CallstackNode;
+
+                    if (callStackNode != null && callStackNode.Name.Contains(findStr))
+                    {
+                        treeViewAdv1.SelectedNode = nextNodeAdv;
+                        break;
+                    }
+                }
+
+                currentNodeAdv = nextNodeAdv;
+
+            }
+            while (nextNodeAdv != treeViewAdv1.SelectedNode);
+        }
 	}
 
 	class CallstackNode : Aga.Controls.Tree.Node
